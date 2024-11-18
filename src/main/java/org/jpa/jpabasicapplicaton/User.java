@@ -1,18 +1,21 @@
 package org.jpa.jpabasicapplicaton;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="user_info")
 public class User {
 
     @Id    // that tells the primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  int userId;
+    @Column(name="user_name")
     private String name;
     private int age;
     private String mobile;
+
+    @OneToOne(mappedBy = "user")
+    private Card card;
 
     public User() {
     }
